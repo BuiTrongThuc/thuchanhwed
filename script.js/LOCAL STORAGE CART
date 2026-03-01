@@ -1,0 +1,113 @@
+function formatCurrency(number) {
+    return number.toLocaleString("vi-VN") + "đ";
+}
+// ===== LOCAL STORAGE CART =====
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let currentCategory = "all";
+
+// ===== HIỂN THỊ SỐ LƯỢNG GIỎ HÀNG =====
+function updateCartCount() {
+    let total = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let cartCount = document.getElementById("cartCount");
+    if (cartCount) {
+        cartCount.innerText = total;
+    }
+}
+
+// ===== LƯU GIỎ HÀNG =====
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+}
+
+// ===== THÊM VÀO GIỎ =====
+function addToCart(name, price, image) {
+
+    let product = cart.find(p => p.name === name);
+
+    if (product) {
+        product.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image || "",
+            quantity: 1
+        });
+    }
+
+    saveCart();
+    alert("Đã thêm vào giỏ hàng!");
+}
+
+// ===== FILTER + SEARCH CHUNG =====
+function applyFilter() {
+
+    let input = document.getElementById("searchInput").value.toLowerCase();
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(p => {
+
+        let name = p.querySelector("h5").innerText.toLowerCase();
+        let matchSearch = name.includes(input);
+        let matchCategory = (currentCategory === "all") || p.classList.contains(currentCategory);
+
+        if (matchSearch && matchCategory) {
+            p.style.display = "";
+        } else {
+            p.style.display = "none";
+        }
+
+    });
+}
+
+// ===== CLICK DANH MỤC =====
+function setCategory(category, element) {
+
+    currentCategory = category;
+
+    // remove active
+    let items = document.querySelectorAll("#categoryList .list-group-item");
+    items.forEach(i => i.classList.remove("active"));
+
+    // add active
+    element.classList.add("active");
+
+    applyFilter();
+}
+
+// ===== SEARCH =====
+function searchProduct() {
+    applyFilter();
+}
+
+// ===== LOAD KHI MỞ TRANG =====
+document.addEventListener("DOMContentLoaded", function () {
+    updateCartCount();
+});
+// ===== THANH TOÁN =====
+function checkout(){
+
+    if(cart.length === 0){
+        alert("Giỏ hàng đang trống!");
+        return;
+    }
+
+    let total = 0;
+    cart.forEach(item=>{
+        total += item.price * item.quantity;
+    });
+
+    if(confirm("Tổng tiền: " + formatCurrency(total) + "\nBạn có chắc muốn thanh toán không?")){
+        
+        alert("Thanh toán thành công 🎉");
+
+        cart = [];
+        saveCart();
+
+        // nếu đang ở trang cart thì mới render
+        if (typeof renderCart === "function") {
+            renderCart();
+        }
+    }
+}
