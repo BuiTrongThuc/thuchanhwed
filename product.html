@@ -56,6 +56,10 @@ aria-label="Mở menu điều hướng">
 </li>
 
 <li class="nav-item">
+<a class="nav-link" href="#">Login / Register</a>
+</li>
+
+<li class="nav-item">
 <a class="nav-link" href="cart.html">
 <i class="bi bi-cart"></i>
 Cart (<span id="cartCount">0</span>)
@@ -75,10 +79,10 @@ Cart (<span id="cartCount">0</span>)
 <div class="sidebar">
 <h5>Danh mục sản phẩm</h5>
 <ul class="list-group" id="categoryList">
-<li class="list-group-item active" onclick="setCategory('all', this)">Tất cả</li>
-<li class="list-group-item" onclick="setCategory('laptop', this)">Laptop</li>
-<li class="list-group-item" onclick="setCategory('phone', this)">Điện thoại</li>
-<li class="list-group-item" onclick="setCategory('accessory', this)">Phụ kiện</li>
+<li class="list-group-item active" data-category="all" onclick="setCategory('all', this)">Tất cả</li>
+<li class="list-group-item" data-category="laptop" onclick="setCategory('laptop', this)">Laptop</li>
+<li class="list-group-item" data-category="phone" onclick="setCategory('phone', this)">Điện thoại</li>
+<li class="list-group-item" data-category="accessory" onclick="setCategory('accessory', this)">Phụ kiện</li>
 </ul>
 </div>
 </aside>
@@ -95,7 +99,43 @@ onkeyup="searchProduct()">
 
 <div class="row g-4" id="productList">
 
-<!-- 6 PRODUCTS -->
+
+
+<!-- iPhone 15 Pro Max -->
+<div class="col-lg-4 col-md-6 product phone">
+<div class="card h-100">
+<img src="images/iphone15prm.jpg" 
+class="card-img-top" 
+alt="Điện thoại iPhone 15 Pro Max">
+<div class="card-body text-center">
+<h5>iPhone 15 Pro Max</h5>
+<p class="text-danger fw-bold price-label" data-price="32000000">32.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-iphone15.html">View detail</a>
+<button onclick="addToCart('iPhone 15 Pro Max',32000000,'images/iphone15prm.jpg')" 
+class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Vivo X200 -->
+<div class="col-lg-4 col-md-6 product phone">
+<div class="card h-100">
+<img src="images/vivox200.jpg" 
+class="card-img-top" 
+alt="Điện thoại Vivo X200">
+<div class="card-body text-center">
+<h5>Vivo X200</h5>
+<p class="text-danger fw-bold price-label" data-price="19000000">19.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-vivox200.html">View detail</a>
+<button onclick="addToCart('Vivo X200',19000000,'images/vivox200.jpg')" 
+class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
 
 <div class="col-lg-4 col-md-6 product laptop">
 <div class="card h-100">
@@ -104,9 +144,12 @@ class="card-img-top"
 alt="Laptop HP Victus 15">
 <div class="card-body text-center">
 <h5>Laptop Victus 15</h5>
-<p class="text-danger fw-bold">25.000.000vnđ</p>
+<p class="text-danger fw-bold price-label" data-price="25000000">25.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-hp.html">View detail</a>
 <button onclick="addToCart('Laptop Victus 15',25000000,'images/hp-victus-15.jpg')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -118,9 +161,12 @@ class="card-img-top"
 alt="Điện thoại iPhone 17 Promax">
 <div class="card-body text-center">
 <h5>iPhone 17 Promax</h5>
-<p class="text-danger fw-bold">50.000.000đvn</p>
+<p class="text-danger fw-bold price-label" data-price="50000000">50.000.000đvn</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-iphone.html">View detail</a>
 <button onclick="addToCart('iPhone 17 Promax',50000000,'images/iphone17PRM.jpg')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -132,9 +178,12 @@ class="card-img-top"
 alt="Tai nghe AirPod không dây">
 <div class="card-body text-center">
 <h5>Tai nghe AirPod</h5>
-<p class="text-danger fw-bold">3.000.000vnđ</p>
+<p class="text-danger fw-bold price-label" data-price="3000000">3.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-airpod.html">View detail</a>
 <button onclick="addToCart('Tai nghe AirPod',3000000,'images/airpods2khongday.png')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -146,9 +195,12 @@ class="card-img-top"
 alt="Laptop Macbook Pro M4 14 inch">
 <div class="card-body text-center">
 <h5>Macbook Pro M4 14"</h5>
-<p class="text-danger fw-bold">50.000.000vnđ</p>
+<p class="text-danger fw-bold price-label" data-price="50000000">50.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-macbook.html">View detail</a>
 <button onclick="addToCart('Macbook Pro M4 14',50000000,'images/macbook-pro_m4-14.jpg')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -160,9 +212,12 @@ class="card-img-top"
 alt="Điện thoại Samsung S24">
 <div class="card-body text-center">
 <h5>Samsung S24</h5>
-<p class="text-danger fw-bold">22.000.000vnđ</p>
+<p class="text-danger fw-bold price-label" data-price="22000000">22.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-s24.html">View detail</a>
 <button onclick="addToCart('Samsung S24',22000000,'images/Samsung s24.jpg')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -174,9 +229,66 @@ class="card-img-top"
 alt="Bàn phím cơ Aula F75 RGB">
 <div class="card-body text-center">
 <h5>Bàn phím cơ Aula F75</h5>
-<p class="text-danger fw-bold">2.000.000vnđ</p>
+<p class="text-danger fw-bold price-label" data-price="2000000">2.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-aula-f75.html">View detail</a>
 <button onclick="addToCart('Bàn phím cơ Aula F75',2000000,'images/aula-f75-v2_1726029932.png')" 
 class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Tay cầm GameSir Nova Lite 2 -->
+<div class="col-lg-4 col-md-6 product accessory">
+<div class="card h-100">
+<img src="images/gamesirnovalite2.png" 
+class="card-img-top" 
+alt="Tay cầm GameSir Nova Lite 2">
+<div class="card-body text-center">
+<h5>Tay cầm GameSir Nova Lite 2</h5>
+<p class="text-danger fw-bold price-label" data-price="1200000">1.200.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-gamesir-novalite2.html">View detail</a>
+<button onclick="addToCart('Tay cầm GameSir Nova Lite 2',1200000,'images/gamesirnovalite2.png')" 
+class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Apple Watch Series 10 -->
+<div class="col-lg-4 col-md-6 product accessory">
+<div class="card h-100">
+<img src="images/Apple_Watch_Series_10.jpg" 
+class="card-img-top" 
+alt="Apple Watch Series 10">
+<div class="card-body text-center">
+<h5>Apple Watch Series 10</h5>
+<p class="text-danger fw-bold price-label" data-price="12000000">12.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-apple-watch.html">View detail</a>
+<button onclick="addToCart('Apple Watch Series 10',12000000,'images/Apple_Watch_Series_10.jpg')" 
+class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- TV Xiaomi 75" S Mini LED 2025 -->
+<div class="col-lg-4 col-md-6 product accessory">
+<div class="card h-100">
+<img src="images/mivietnam-tivi-xiaomi-75-inch-S-Mini-LED-2025.jpg" 
+class="card-img-top" 
+alt="Tivi Xiaomi 75 inch S Mini LED 2025">
+<div class="card-body text-center">
+<h5>TV Xiaomi 75" S Mini LED</h5>
+<p class="text-danger fw-bold price-label" data-price="28000000">28.000.000vnđ</p>
+<div class="d-flex justify-content-center gap-2">
+<a class="btn btn-outline-secondary btn-sm" href="detail-xiaomi-tv.html">View detail</a>
+<button onclick="addToCart('TV Xiaomi 75\" S Mini LED 2025',28000000,'images/mivietnam-tivi-xiaomi-75-inch-S-Mini-LED-2025.jpg')" 
+class="btn btn-primary btn-sm">Add to Cart</button>
+</div>
 </div>
 </div>
 </div>
@@ -210,6 +322,29 @@ function getCart(){
 return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
+function getVoucher(){
+return JSON.parse(localStorage.getItem("voucher")) || null;
+}
+
+function formatCurrency(n){
+return n.toLocaleString("vi-VN") + "đ";
+}
+
+function updatePricesWithVoucher(){
+const voucher = getVoucher();
+const els = document.querySelectorAll(".price-label");
+els.forEach(el=>{
+const base = Number(el.dataset.price||0);
+if(!base){return;}
+if(voucher && typeof voucher.percent === "number"){
+const sale = Math.round(base*(1 - voucher.percent));
+el.innerHTML = `<span class="text-muted text-decoration-line-through me-1">${formatCurrency(base)}</span><span class="text-danger fw-bold">${formatCurrency(sale)}</span>`;
+} else {
+el.innerHTML = `${formatCurrency(base)}`;
+}
+});
+}
+
 function saveCart(cart){
 localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -220,10 +355,21 @@ document.getElementById("cartCount").innerText = getCart().length;
 
 function addToCart(name, price, image){
 let cart = getCart();
-cart.push({name, price, image});
+let finalPrice = price;
+const voucher = getVoucher();
+if(voucher && typeof voucher.percent === "number"){
+finalPrice = Math.round(price * (1 - voucher.percent));
+}
+cart.push({name, price: finalPrice, image});
 saveCart(cart);
 updateCartCount();
+if(voucher && typeof voucher.percent === "number"){
+alert(`Đã thêm vào giỏ hàng! Áp dụng mã ${voucher.code} giảm ${Math.round(voucher.percent*100)}% (còn ${formatCurrency(finalPrice)}).`);
+ localStorage.removeItem("voucher"); // voucher dùng 1 lần
+ updatePricesWithVoucher();
+} else {
 alert("Đã thêm vào giỏ hàng!");
+}
 }
 
 function searchProduct(){
@@ -236,21 +382,36 @@ p.style.display = name.includes(input) ? "block" : "none";
 }
 
 function setCategory(category, element){
-let items = document.querySelectorAll(".list-group-item");
-items.forEach(i=>i.classList.remove("active"));
-element.classList.add("active");
+	let items = document.querySelectorAll(".list-group-item");
+	items.forEach(i=>i.classList.remove("active"));
+	if(element){ element.classList.add("active"); }
+	else {
+		const match = document.querySelector(`.list-group-item[data-category="${category}"]`);
+		if(match){ match.classList.add("active"); }
+	}
 
-let products = document.querySelectorAll(".product");
-products.forEach(p=>{
-if(category === "all"){
-p.style.display = "block";
-}else{
-p.style.display = p.classList.contains(category) ? "block" : "none";
+	let products = document.querySelectorAll(".product");
+	products.forEach(p=>{
+		if(category === "all"){
+			p.style.display = "block";
+		}else{
+			p.style.display = p.classList.contains(category) ? "block" : "none";
+		}
+	});
 }
-});
+
+function applyHashCategory(){
+	const hash = (window.location.hash || "").replace('#','');
+	if(!hash){ return; }
+	const categories = ["laptop","phone","accessory","all"];
+	if(categories.includes(hash)){
+		setCategory(hash, null);
+	}
 }
 
 document.addEventListener("DOMContentLoaded", updateCartCount);
+document.addEventListener("DOMContentLoaded", updatePricesWithVoucher);
+document.addEventListener("DOMContentLoaded", applyHashCategory);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

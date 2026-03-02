@@ -9,31 +9,183 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 <style>
-body { font-family: 'Segoe UI', sans-serif; }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #e9edf5;
+    background-color: #0a1224;
+    background-image:
+        radial-gradient(circle at 18% 18%, rgba(13, 110, 253, 0.24), transparent 35%),
+        radial-gradient(circle at 82% 8%, rgba(49, 196, 141, 0.22), transparent 35%),
+        radial-gradient(circle at 22% 82%, rgba(255, 193, 7, 0.16), transparent 36%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 25%, transparent 25% 50%, rgba(255, 255, 255, 0.06) 50% 75%, transparent 75% 100%);
+    background-size: auto, auto, auto, 160px 160px;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+.banner-wrapper { position: relative; }
+.voucher-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 5;
+    background: linear-gradient(135deg, #0d6efd, #31c48d);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.35);
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.25;
+}
+.voucher-badge small { display: block; font-weight: 500; font-size: 12px; opacity: 0.9; }
+.banner-cta {
+    margin-top: 8px;
+}
+.voucher-chip {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(13,110,253,0.9), rgba(49,196,141,0.9));
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.carousel-caption {
+    background: rgba(5, 10, 25, 0.7);
+    backdrop-filter: blur(8px);
+    border-radius: 14px;
+    padding: 18px 18px 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.card {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: linear-gradient(145deg, rgba(15,22,40,0.92), rgba(11,17,30,0.92));
+    color: #e9edf5;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+}
+.card .btn-primary { box-shadow: 0 6px 14px rgba(13,110,253,0.35); }
+.card .btn-primary:hover { transform: translateY(-1px); }
 .navbar-nav .nav-link:hover { color: #ffc107 !important; }
 .card:hover { transform: translateY(-8px); transition: 0.3s; }
 .btn:hover { opacity: 0.85; }
 footer { background:#212529; color:white; padding:30px 0; }
+.logo-img {
+    /*/ Kích thước cố định cho logo */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 45%;
+    border: 4px solid #0dcaf0;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.35);
+    background: #000;
+}
+.featured-card img { height: 230px; object-fit: cover; }
+.info-tile {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 18px;
+    color: #f8f9fa;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+}
+.info-tile .bi { font-size: 26px; color: #0dcaf0; }
+.newsletter-box {
+    background: rgba(13,110,253,0.12);
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid rgba(13,110,253,0.3);
+}
+.newsletter-box .form-control { background: rgba(255,255,255,0.08); color: #e9edf5; border: 1px solid rgba(255,255,255,0.18); }
+.newsletter-box .form-control::placeholder { color: #cbd4e0; }
+.section-heading { color: #e9edf5; }
+.tagline { color: #5f6b85; font-size: 13px; margin-top: -2px; }
+.promo-bar {
+    background: linear-gradient(135deg, #ff4b6e, #ff7b3d);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 0;
+}
+.promo-bar .mini { font-weight: 500; opacity: 0.9; }
+.promo-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.14);
+    font-weight: 600;
+    font-size: 12px;
+}
+.promo-pill .bi { font-size: 14px; }
+.category-bar {
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1f2a44, #162033);
+    color: #e9edf5;
+    font-weight: 600;
+    font-size: 13px;
+    border: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+.category-pill:hover { background: linear-gradient(135deg, #0d6efd, #31c48d); color: #fff; text-decoration: none; }
+.category-pill .bi { font-size: 15px; }
+.search-hero {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+.quick-links a { color: #0d6efd; font-weight: 600; margin-right: 8px; }
+.quick-links a:hover { text-decoration: underline; }
+.header-card {
+    background: #f8f9fa;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+}
+.header-card .form-select, .header-card .form-control { background-color: #fff; }
+.header-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0d6efd, #31c48d);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    box-shadow: 0 8px 14px rgba(0,0,0,0.25);
+}
+.header-pill .bi { font-size: 16px; }
 </style>
 </head>
 <body>
 
-<header class="bg-light py-3 shadow-sm">
-<div class="container">
-<div class="row align-items-center">
-<div class="col-md-2 text-center">
-<img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
-width="60"
-alt="Logo SuperTechStore">
-</div>
-<div class="col-md-10 text-center text-md-start">
-<h2 class="text-primary fw-bold">SuperTechStore</h2>
+<div class="promo-bar text-center">
+<div class="container d-flex flex-wrap justify-content-center justify-content-md-between align-items-center gap-2">
+<span>Sale 8/3 sắp tới | Đăng ký ngay!</span>
+<div class="d-flex flex-wrap gap-2">
+<span class="promo-pill"><i class="bi bi-truck"></i>Giao nhanh & miễn phí đơn 300k</span>
+<span class="promo-pill"><i class="bi bi-shield-lock"></i>Chính hãng - xuất VAT</span>
+<span class="promo-pill"><i class="bi bi-telephone"></i>0865 721 389</span>
 </div>
 </div>
 </div>
-</header>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
 <div class="container">
 <a class="navbar-brand" href="index.html">SuperTechStore</a>
 
@@ -52,48 +204,155 @@ aria-label="Mở menu">
 <li class="nav-item"><a class="nav-link" href="#">About</a></li>
 <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 <li class="nav-item"><a class="nav-link" href="#">Login / Register</a></li>
+<li class="nav-item"><a class="nav-link" href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
 </ul>
 </div>
 </div>
 </nav>
 
+<header class="bg-light py-2 shadow-sm">
+<div class="container">
+<div class="header-card">
+<div class="row align-items-center g-2">
+<div class="col-md-2 text-center">
+<img src="images/Supertechstore.png"
+class="logo-img"
+alt="Logo SuperTechStore">
+</div>
+<div class="col-md-4 text-center text-md-start">
+<h2 class="text-primary fw-bold mb-1 fs-4">SuperTechStore</h2>
+<div class="tagline">Nơi mua sắm công nghệ uy tín</div>
+</div>
+<div class="col-md-3">
+<div class="input-group input-group-sm">
+<input id="voucherInput" type="text" class="form-control" placeholder="Nhập mã giảm giá...">
+<button class="btn btn-primary" onclick="applyVoucher()">Áp dụng</button>
+<button class="btn btn-danger" onclick="clearVoucher()">Hủy áp dụng</button>
+</div>
+</div>
+<div class="col-md-3">
+<select class="form-select form-select-sm" aria-label="Chọn khu vực">
+<option selected>Hồ Chí Minh</option>
+<option>Hà Nội</option>
+<option>Đà Nẵng</option>
+<option>Khác</option>
+</select>
+</div>
+</div>
+</div>
+</header>
+
+<div class="category-bar py-2">
+<div class="container d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+<a class="category-pill" href="#featured-products"><i class="bi bi-stars"></i>Sản phẩm nổi bật</a>
+<a class="category-pill" href="product.html#laptop"><i class="bi bi-laptop"></i>Laptop</a>
+<a class="category-pill" href="product.html#phone"><i class="bi bi-phone"></i>Điện thoại</a>
+<a class="category-pill" href="product.html#accessory"><i class="bi bi-headphones"></i>Phụ kiện</a>
+<a class="category-pill" href="cart.html"><i class="bi bi-cart"></i>Giỏ hàng</a>
+</div>
+</div>
+
 <main>
 
-<section>
-<div id="bannerSlider" class="carousel slide" data-bs-ride="carousel">
+<section class="container my-3">
+<div class="search-hero">
+<div class="row g-2 align-items-center">
+<div class="col-lg-8 col-md-7">
+<div class="input-group input-group-lg">
+<span class="input-group-text"><i class="bi bi-search"></i></span>
+<input type="text" class="form-control" placeholder="Bạn muốn tìm sản phẩm gì hôm nay?">
+<a class="btn btn-primary" href="product.html">Tìm nhanh</a>
+</div>
+</div>
+<div class="col-lg-4 col-md-5 text-md-end text-center">
+<div class="d-inline-flex flex-column align-items-md-end align-items-center gap-1">
+<span class="promo-pill"><i class="bi bi-cash-coin"></i>Voucher GOATBONGDA -80%</span>
+<span class="promo-pill"><i class="bi bi-box-seam"></i>Đổi trả 7 ngày nếu lỗi</span>
+<div class="quick-links">
+<a href="product.html#phone">Điện thoại</a>
+<a href="product.html#laptop">Laptop</a>
+<a href="product.html#accessory">Tai nghe / Phụ kiện</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="banner-wrapper">
+<div class="voucher-badge">
+Voucher ưu đãi
+<small>ANHTHUCDEPTRAI -60% | GOATBONGDA -80%</small>
+<small>TECH10 -10% | CONGAN -20% | QUANDOI -20%</small>
+</div>
+<div id="bannerSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200" data-bs-pause="false" data-bs-touch="true">
 
 <div class="carousel-inner">
 
 <div class="carousel-item active">
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+<img src="images/iphone15prm.jpg"
 class="d-block w-100"
 height="500"
-alt="Laptop cao cấp">
+alt="iPhone 15 Pro Max">
 <div class="carousel-caption">
-<h3>Laptop Cao Cấp</h3>
-<p>Hiệu năng mạnh mẽ</p>
+<h3>iPhone 15 Pro Max</h3>
+<p>Flagship khung titan, camera zoom mạnh</p>
+<div class="voucher-chip">Mã: ANHTHUCDEPTRAI (-60%)</div>
+<div class="banner-cta">
+<a href="product.html" class="btn btn-primary btn-sm">Xem các sản phẩm</a>
+</div>
 </div>
 </div>
 
 <div class="carousel-item">
-<img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5"
+<img src="images/CR7.jpg"
 class="d-block w-100"
 height="500"
-alt="Điện thoại mới nhất">
+alt="CR7 Special Edition">
+</div>
+
+<div class="carousel-item">
+<img src="images/vivox200.jpg"
+class="d-block w-100"
+height="500"
+alt="Vivo X200">
 <div class="carousel-caption">
-<h3>Điện thoại mới</h3>
-<p>Công nghệ 2026</p>
+<h3>Vivo X200</h3>
+<p>Màn AMOLED 120Hz, sạc nhanh 80W</p>
+<div class="voucher-chip">Mã: TECH10 (-10%)</div>
+<div class="banner-cta">
+<a href="product.html" class="btn btn-primary btn-sm">Xem các sản phẩm</a>
+</div>
 </div>
 </div>
 
 <div class="carousel-item">
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+<img src="images/macbook-pro_m4-14.jpg"
 class="d-block w-100"
 height="500"
-alt="Phụ kiện chính hãng">
+alt="Macbook Pro M4 14">
 <div class="carousel-caption">
-<h3>Phụ kiện</h3>
-<p>Giá tốt mỗi ngày</p>
+<h3>Macbook Pro M4</h3>
+<p>Hiệu năng Apple Silicon, màn XDR rực rỡ</p>
+<div class="voucher-chip">Mã: CONGAN (-20%)</div>
+<div class="banner-cta">
+<a href="product.html" class="btn btn-primary btn-sm">Xem các sản phẩm</a>
+</div>
+</div>
+</div>
+
+<div class="carousel-item">
+<img src="images/gamesirnovalite2.png"
+class="d-block w-100"
+height="500"
+alt="Tay cầm GameSir Nova Lite 2">
+<div class="carousel-caption">
+<h3>GameSir Nova Lite 2</h3>
+<p>Độ trễ thấp, hỗ trợ PC/Android/iOS</p>
+<div class="voucher-chip">Mã: QUANDOI (-20%)</div>
+<div class="banner-cta">
+<a href="product.html" class="btn btn-primary btn-sm">Xem các sản phẩm</a>
+</div>
 </div>
 </div>
 
@@ -118,47 +377,209 @@ aria-label="Slide sau">
 </div>
 </section>
 
-<section class="container my-5">
-<h3 class="text-center mb-4">Sản phẩm nổi bật</h3>
+<section class="container my-5" id="featured-products">
+<h3 class="text-center mb-4 section-heading">Sản phẩm nổi bật</h3>
 
 <div class="row g-4">
 
 <!-- PRODUCT 1 -->
 <div class="col-md-4 col-sm-6">
-<div class="card h-100">
+<div class="card h-100 featured-card">
 <img src="images/macbook-pro_m4-14.jpg" class="card-img-top" alt="Macbook Pro">
-<div class="card-body text-center">
+<div class="card-body text-center d-flex flex-column">
 <h5>Macbook Pro</h5>
 <p class="text-danger fw-bold">50.000.000vnđ</p>
-<a href="detail-macbook.html" class="btn btn-primary">View Detail</a>
+<div class="mt-auto">
+<a href="detail-macbook.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
 </div>
 </div>
 </div>
 
 <!-- PRODUCT 2 -->
 <div class="col-md-4 col-sm-6">
-<div class="card h-100">
+<div class="card h-100 featured-card">
 <img src="images/hp-victus-15.jpg" class="card-img-top" alt="Laptop HP Victus 15">
-<div class="card-body text-center">
+<div class="card-body text-center d-flex flex-column">
 <h5>Laptop HP Victus 15</h5>
 <p class="text-danger fw-bold">25.000.000vnđ</p>
-<a href="detail-hp.html" class="btn btn-primary">View Detail</a>
+<div class="mt-auto">
+<a href="detail-hp.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
 </div>
 </div>
 </div>
 
 <!-- PRODUCT 3 -->
 <div class="col-md-4 col-sm-6">
-<div class="card h-100">
+<div class="card h-100 featured-card">
 <img src="images/iphone17PRM.jpg" class="card-img-top" alt="iPhone 17 Promax">
-<div class="card-body text-center">
+<div class="card-body text-center d-flex flex-column">
 <h5>iPhone 17 Promax</h5>
 <p class="text-danger fw-bold">50.000.000vnđ</p>
-<a href="detail-iphone17.html" class="btn btn-primary">View Detail</a>
+<div class="mt-auto">
+<a href="detail-iphone.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
 </div>
 </div>
 </div>
 
+<!-- PRODUCT 4 -->
+<div class="col-md-4 col-sm-6">
+<div class="card h-100 featured-card">
+<img src="images/iphone15prm.jpg" class="card-img-top" alt="iPhone 15 Pro Max">
+<div class="card-body text-center d-flex flex-column">
+<h5>iPhone 15 Pro Max</h5>
+<p class="text-danger fw-bold">32.000.000vnđ</p>
+<div class="mt-auto">
+<a href="detail-iphone15.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 5 -->
+<div class="col-md-4 col-sm-6">
+<div class="card h-100 featured-card">
+<img src="images/vivox200.jpg" class="card-img-top" alt="Vivo X200">
+<div class="card-body text-center d-flex flex-column">
+<h5>Vivo X200</h5>
+<p class="text-danger fw-bold">19.000.000vnđ</p>
+<div class="mt-auto">
+<a href="detail-vivox200.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 6 -->
+<div class="col-md-4 col-sm-6">
+<div class="card h-100 featured-card">
+<img src="images/gamesirnovalite2.png" class="card-img-top" alt="Tay cầm GameSir Nova Lite 2">
+<div class="card-body text-center d-flex flex-column">
+<h5>GameSir Nova Lite 2</h5>
+<p class="text-danger fw-bold">1.200.000vnđ</p>
+<div class="mt-auto">
+<a href="detail-gamesir-novalite2.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 7 -->
+<div class="col-md-4 col-sm-6">
+<div class="card h-100 featured-card">
+<img src="images/Apple_Watch_Series_10.jpg" class="card-img-top" alt="Apple Watch Series 10">
+<div class="card-body text-center d-flex flex-column">
+<h5>Apple Watch Series 10</h5>
+<p class="text-danger fw-bold">12.000.000vnđ</p>
+<div class="mt-auto">
+<a href="detail-apple-watch.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PRODUCT 8 -->
+<div class="col-md-4 col-sm-6">
+<div class="card h-100 featured-card">
+<img src="images/mivietnam-tivi-xiaomi-75-inch-S-Mini-LED-2025.jpg" class="card-img-top" alt="Tivi Xiaomi 75 inch S Mini LED 2025">
+<div class="card-body text-center d-flex flex-column">
+<h5>TV Xiaomi 75" S Mini LED</h5>
+<p class="text-danger fw-bold">28.000.000vnđ</p>
+<div class="mt-auto">
+<a href="detail-xiaomi-tv.html" class="btn btn-primary btn-sm">View detail</a>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- Dịch vụ và bảo hành -->
+<section class="container mb-5">
+<div class="row g-3 text-white">
+<div class="col-md-4">
+<div class="info-tile h-100">
+<div class="d-flex align-items-start gap-3">
+<i class="bi bi-truck"></i>
+<div>
+<h6 class="mb-1">Giao nhanh toàn quốc</h6>
+<small>Miễn phí nội thành, thu hộ COD, kiểm tra hàng trước khi nhận.</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="info-tile h-100">
+<div class="d-flex align-items-start gap-3">
+<i class="bi bi-shield-check"></i>
+<div>
+<h6 class="mb-1">Bảo hành chính hãng</h6>
+<small>12-24 tháng tùy sản phẩm, 1 đổi 1 trong 7 ngày nếu lỗi NSX.</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-4">
+<div class="info-tile h-100">
+<div class="d-flex align-items-start gap-3">
+<i class="bi bi-headset"></i>
+<div>
+<h6 class="mb-1">Hỗ trợ 24/7</h6>
+<small>Hotline 0865 721 389 · Chat nhanh Zalo/FB · Hướng dẫn cài đặt từ xa.</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Chính sách & liên hệ nhanh -->
+<section class="container mb-5">
+<div class="row g-3">
+<div class="col-lg-8">
+<div class="info-tile h-100">
+<h6 class="mb-3 section-heading">Chính sách mua sắm</h6>
+<div class="row g-2 small">
+<div class="col-sm-6">
+<div class="d-flex align-items-start gap-2">
+<i class="bi bi-box-arrow-in-down-right text-info"></i>
+<span>Đổi trả 7 ngày nếu lỗi, hoàn tiền nhanh.</span>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="d-flex align-items-start gap-2">
+<i class="bi bi-credit-card-2-front text-info"></i>
+<span>Trả góp lãi suất thấp qua thẻ tín dụng.</span>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="d-flex align-items-start gap-2">
+<i class="bi bi-gear-wide-connected text-info"></i>
+<span>Cài đặt máy, vệ sinh miễn phí tại shop.</span>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="d-flex align-items-start gap-2">
+<i class="bi bi-shield-lock text-info"></i>
+<span>Hóa đơn điện tử, bảo mật thông tin khách hàng.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="newsletter-box h-100">
+<h6 class="mb-2 text-white">Nhận tin công nghệ mới</h6>
+<p class="small mb-3 text-white-50">Nhận khuyến mãi, tin review sản phẩm mới mỗi tuần.</p>
+<div class="input-group">
+<input type="email" class="form-control" placeholder="Nhập email của bạn">
+<button class="btn btn-primary">Đăng ký</button>
+</div>
+</div>
+</div>
 </div>
 </section>
 
@@ -189,6 +610,33 @@ function getCart(){
     return JSON.parse(localStorage.getItem("cart")) || [];
 }
 
+function applyVoucher(){
+    const input = document.getElementById("voucherInput");
+    const code = (input?.value || "").trim().toUpperCase();
+    const vouchers = {
+        "ANHTHUCDEPTRAI": 0.60,
+        "GOATBONGDA": 0.80,
+        "TECH10": 0.10,
+        "CONGAN": 0.20,
+        "QUANDOI": 0.20
+    };
+
+    if(code && vouchers[code] !== undefined){
+        localStorage.setItem("voucher", JSON.stringify({ code, percent: vouchers[code] }));
+        alert(`Áp dụng mã ${code} thành công: giảm ${Math.round(vouchers[code]*100)}% khi thêm sản phẩm.`);
+    } else {
+        localStorage.removeItem("voucher");
+        alert("Mã không hợp lệ, vui lòng thử lại.");
+    }
+}
+
+function clearVoucher(){
+    localStorage.removeItem("voucher");
+    const input = document.getElementById("voucherInput");
+    if(input){ input.value = ""; }
+    alert("Đã hủy áp dụng mã giảm giá.");
+}
+
 function updateCartCount(){
     let cart = getCart();
     let countElement = document.getElementById("cart-count");
@@ -198,52 +646,19 @@ function updateCartCount(){
 }
 
 document.addEventListener("DOMContentLoaded", updateCartCount);
+
+// Smooth scroll for in-page anchors
+document.addEventListener("click", function(e){
+    const target = e.target.closest('a[href^="#"]');
+    if(target && target.getAttribute('href')?.length > 1){
+        const id = target.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+            e.preventDefault();
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
 </script>
 </body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-<div class="container">
-<a class="navbar-brand" href="index.html">SuperTechStore</a>
-
-<button class="navbar-toggler"
-type="button"
-data-bs-toggle="collapse"
-data-bs-target="#navMenu"
-aria-label="Mở menu">
-<span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="navMenu">
-<ul class="navbar-nav ms-auto">
-
-<li class="nav-item">
-<a class="nav-link active" href="index.html">Home</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="product.html">Products</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#">About</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="#">Contact</a>
-</li>
-
-<li class="nav-item">
-<a class="nav-link" href="login.html">Login</a>
-</li>
-
-<!-- ✅ GIỎ HÀNG -->
-<li class="nav-item">
-<a class="nav-link" href="cart.html">
-🛒 Cart (<span id="cart-count">0</span>)
-</a>
-</li>
-
-</ul>
-</div>
-</div>
-</nav>
 </html>

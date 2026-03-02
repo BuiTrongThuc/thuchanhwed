@@ -105,7 +105,7 @@ function checkout(){
         cart = [];
         saveCart();
 
-        // nếu đang ở trang cart thì mới render
+    
         if (typeof renderCart === "function") {
             renderCart();
         }
