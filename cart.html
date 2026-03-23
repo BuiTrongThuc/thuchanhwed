@@ -5,6 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giỏ hàng</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+body {
+        font-family: 'Segoe UI', sans-serif;
+        color: #e9edf5;
+        background: radial-gradient(circle at 18% 18%, rgba(0, 191, 255, 0.28), transparent 36%),
+                             radial-gradient(circle at 82% 14%, rgba(13, 110, 253, 0.24), transparent 36%),
+                             radial-gradient(circle at 26% 82%, rgba(0, 255, 204, 0.18), transparent 38%),
+                             linear-gradient(180deg, #07132a, #050d1e 48%, #071c33);
+        background-attachment: fixed;
+        min-height: 100vh;
+}
+.navbar { box-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+.cart-hero {
+        background: linear-gradient(135deg, rgba(13,110,253,0.28), rgba(49,196,141,0.22));
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+}
+.cart-hero h2 { margin: 0; color: #fdfefe; }
+.cart-hero p { margin: 4px 0 0; color: #c7d3e6; }
+.chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        color: #e9edf5;
+        font-weight: 600;
+        font-size: 12px;
+        border: 1px solid rgba(255,255,255,0.12);
+}
+.card-glass {
+        background: rgba(15, 22, 40, 0.88);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 14px;
+        box-shadow: 0 12px 26px rgba(0,0,0,0.35);
+        color: #e9edf5;
+}
+.cart-item {
+        display: flex;
+        gap: 14px;
+        padding: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.cart-item:last-child { border-bottom: none; }
+.cart-thumb {
+        width: 72px;
+        height: 72px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #0c1a33;
+        border: 1px solid rgba(255,255,255,0.08);
+}
+.cart-name { font-weight: 700; margin-bottom: 4px; }
+.cart-price { color: #ffc107; font-weight: 700; }
+.empty-state {
+        text-align: center;
+        padding: 28px;
+        color: #cfd6e4;
+}
+.summary-card h5 { margin-bottom: 14px; }
+.summary-row { display: flex; justify-content: space-between; margin-bottom: 8px; color: #cfd6e4; }
+.summary-total { font-size: 20px; font-weight: 800; color: #f8f9fa; }
+.btn-soft {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        color: #e9edf5;
+}
+.qr-image { max-width: 240px; }
+.installment-card {
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    color: #e9edf5;
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+.installment-card:hover { border-color: rgba(13,110,253,0.5); }
+.installment-card.active { border-color: #0d6efd; box-shadow: 0 0 0 2px rgba(13,110,253,0.3); }
+.promo-card {
+    background: linear-gradient(135deg, rgba(15,22,40,0.95), rgba(10,16,28,0.95));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.32);
+    color: #e9edf5;
+}
+.promo-list { display: flex; flex-direction: column; gap: 12px; }
+.promo-item { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+.promo-number {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0d6efd, #31c48d);
+    color: #fff;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+.promo-text { color: #e9edf5; font-weight: 600; line-height: 1.45; }
+.promo-link { color: #8cd3ff; font-weight: 600; font-size: 13px; text-decoration: none; }
+.promo-link:hover { text-decoration: underline; }
+@media (max-width: 576px) {
+        .cart-item { flex-direction: column; align-items: flex-start; }
+        .cart-thumb { width: 100%; height: 200px; }
+}
+</style>
 </head>
 <body>
 
@@ -18,33 +130,148 @@
 </nav>
 
 <main class="container my-5">
-<h2>Giỏ hàng của bạn</h2>
-<table class="table mt-4">
-<thead>
-<tr>
-<th>Sản phẩm</th>
-<th>Giá</th>
-<th>Xóa</th>
-</tr>
-</thead>
-<tbody id="cart-items"></tbody>
-</table>
 
-<h4 id="total"></h4>
-
-<div class="mt-3">
-    <button class="btn btn-danger" onclick="clearCart()">
-        Xóa toàn bộ
-    </button>
-
-    <a href="index.html" class="btn btn-secondary">
-        Tiếp tục mua hàng
-    </a>
-
-    <button class="btn btn-success" onclick="checkout()">
-    Thanh toán
-</button>
+<div class="cart-hero d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+        <h2>Giỏ hàng của bạn</h2>
+        <p>Kiểm tra lại sản phẩm trước khi thanh toán.</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+        <span id="cartBadge" class="chip"><i class="bi bi-bag-check"></i><span id="cartBadgeText">0 món</span></span>
+        <a href="product.html" class="btn btn-soft btn-sm"><i class="bi bi-arrow-left-short"></i> Tiếp tục mua</a>
+    </div>
 </div>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="card-glass" id="cartList"></div>
+        <div id="emptyState" class="card-glass empty-state d-none">
+            <div class="mb-2"><i class="bi bi-emoji-frown"></i> Giỏ hàng trống.</div>
+            <a class="btn btn-primary" href="product.html">Đi mua sắm ngay</a>
+        </div>
+        <div class="promo-card p-3 p-md-4 mt-3">
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <i class="bi bi-gift-fill text-danger fs-4"></i>
+                <div>
+                    <h5 class="mb-0">Khuyến mãi hấp dẫn</h5>
+                    <small class="text-secondary">Áp dụng tùy sản phẩm và khu vực</small>
+                </div>
+            </div>
+            <div class="promo-list">
+                <div class="promo-item">
+                    <span class="promo-number">1</span>
+                    <div class="flex-grow-1">
+                        <div class="promo-text">Trả góp 0% lãi suất, tối đa 12 tháng, trả trước từ 10% qua CTTC hoặc 0đ qua thẻ tín dụng</div>
+                        <a class="promo-link" href="product.html#installment">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="promo-item">
+                    <span class="promo-number">2</span>
+                    <div class="flex-grow-1">
+                        <div class="promo-text">Mua thêm 1 laptop giảm 30% cho sản phẩm thứ 2</div>
+                        <a class="promo-link" href="product.html#laptop">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="promo-item">
+                    <span class="promo-number">3</span>
+                    <div class="flex-grow-1">
+                        <div class="promo-text">Giảm thêm 5% khi mua kèm phụ kiện</div>
+                        <a class="promo-link" href="product.html#accessory">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-glass p-3 summary-card">
+            <h5 class="d-flex align-items-center gap-2"><i class="bi bi-cash-coin"></i> Tóm tắt</h5>
+            <div class="summary-row"><span>Số lượng</span><span id="summaryCount">0</span></div>
+            <div class="summary-row"><span>Tạm tính</span><span id="summarySubtotal">0đ</span></div>
+            <div class="summary-row"><span>Phí vận chuyển</span><span class="text-success">Miễn phí</span></div>
+            <div class="summary-row flex-column align-items-start">
+                <span>Mã giảm giá</span>
+                <div class="input-group input-group-sm mt-1">
+                    <input id="cartVoucherInput" type="text" class="form-control" placeholder="Nhập mã...">
+                    <button class="btn btn-primary" onclick="applyCartVoucher()">Áp dụng</button>
+                    <button class="btn btn-soft" onclick="clearCartVoucher()">Xóa</button>
+                </div>
+                <small id="summaryVoucher" class="text-info">Chưa áp dụng</small>
+            </div>
+            <hr class="border-secondary">
+            <div class="summary-row summary-total"><span>Tổng cộng</span><span id="summaryTotal">0đ</span></div>
+                <div class="d-grid gap-2 mt-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <span class="fw-semibold">Phương thức thanh toán</span>
+                        <span class="badge bg-light text-dark" id="selectedPaymentLabel">Chưa chọn</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-soft flex-fill" id="btnPayCard" onclick="selectPayment('Thẻ tín dụng')"><i class="bi bi-credit-card-2-front"></i> Thẻ tín dụng</button>
+                        <button class="btn btn-soft flex-fill" id="btnPayQR" onclick="selectPayment('QR Code')"><i class="bi bi-qr-code"></i> QR Code</button>
+                        <button class="btn btn-soft flex-fill" id="btnPayCOD" onclick="selectPayment('Tiền mặt (COD)')"><i class="bi bi-cash-coin"></i> COD</button>
+                        <button class="btn btn-soft flex-fill" id="btnInstallment" onclick="chooseInstallment()"><i class="bi bi-wallet2"></i> Trả góp</button>
+                    </div>
+                    <div id="paymentDetails" class="p-2 rounded bg-dark bg-opacity-25">
+                        <div id="cardFields" class="d-none">
+                            <label for="cardNumberInput" class="form-label mb-1 small">Số thẻ tín dụng</label>
+                            <input id="cardNumberInput" type="text" class="form-control form-control-sm" placeholder="0000 0000 0000 0000">
+                        </div>
+                        <div id="qrFields" class="d-none text-center">
+                            <div class="small text-muted mb-1">Quét mã QR để thanh toán</div>
+                            <img id="qrImage" src="images/QRpay.jpg" alt="QR thanh toán" class="img-fluid rounded border qr-image">
+                        </div>
+                        <div id="codFields" class="d-none">
+                            <label for="cccdInput" class="form-label mb-1 small">Số CCCD</label>
+                            <input id="cccdInput" type="text" class="form-control form-control-sm" placeholder="Nhập số CCCD">
+                        </div>
+                    </div>
+                    <div id="installmentSection" class="mt-2 d-none">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <i class="bi bi-wallet2 text-info"></i>
+                            <span class="fw-semibold">Chọn gói trả góp</span>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-12">
+                                <button type="button" class="installment-card w-100 text-start" data-months="6" onclick="selectInstallment(6)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="fw-bold">Kỳ hạn 6 tháng</span>
+                                        <span class="badge bg-primary">0%</span>
+                                    </div>
+                                    <div class="small text-muted">Trả trước: <span id="instDown6">0đ</span></div>
+                                    <div class="small text-muted">Góp mỗi tháng: <span id="instMonthly6">0đ</span></div>
+                                    <div class="small text-muted">Tổng tiền: <span id="instTotal6">0đ</span></div>
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="installment-card w-100 text-start" data-months="9" onclick="selectInstallment(9)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="fw-bold">Kỳ hạn 9 tháng</span>
+                                        <span class="badge bg-primary">0%</span>
+                                    </div>
+                                    <div class="small text-muted">Trả trước: <span id="instDown9">0đ</span></div>
+                                    <div class="small text-muted">Góp mỗi tháng: <span id="instMonthly9">0đ</span></div>
+                                    <div class="small text-muted">Tổng tiền: <span id="instTotal9">0đ</span></div>
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <button type="button" class="installment-card w-100 text-start" data-months="12" onclick="selectInstallment(12)">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="fw-bold">Kỳ hạn 12 tháng</span>
+                                        <span class="badge bg-primary">0%</span>
+                                    </div>
+                                    <div class="small text-muted">Trả trước: <span id="instDown12">0đ</span></div>
+                                    <div class="small text-muted">Góp mỗi tháng: <span id="instMonthly12">0đ</span></div>
+                                    <div class="small text-muted">Tổng tiền: <span id="instTotal12">0đ</span></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-danger" onclick="clearCart()"><i class="bi bi-trash"></i> Xóa toàn bộ</button>
+                    <button class="btn btn-success" id="checkoutBtn" onclick="checkout()" disabled><i class="bi bi-credit-card"></i> Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </main>
 
 <script>
@@ -56,37 +283,111 @@ function saveCart(cart){
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+const voucherTable = {
+    "ANHTHUCDEPTRAI": 0.60,
+    "GOATBONGDA": 0.80,
+    "TECH10": 0.10,
+    "CONGAN": 0.20,
+    "QUANDOI": 0.20
+};
+
+let selectedPayment = null;
+let selectedInstallmentMonths = null;
+
+function formatCurrency(n){
+    return (n || 0).toLocaleString("vi-VN") + "đ";
+}
+
 function updateCartCount(){
-    let cart = getCart();
-    document.getElementById("cart-count").innerText = cart.length;
+    const cart = getCart();
+    const countEl = document.getElementById("cart-count");
+    if(countEl){ countEl.innerText = cart.length; }
 }
 
 function renderCart(){
-    let cart = getCart();
-    let tbody = document.getElementById("cart-items");
+    const cart = getCart();
+    const imageMap = {
+        "iphone 15 pro max": "images/iphone15prm.jpg",
+        "vivo x200": "images/vivox200.jpg",
+        "laptop victus 15": "images/hp-victus-15.jpg",
+        "laptop hp victus 15": "images/hp-victus-15.jpg",
+        "iphone 17 promax": "images/iphone17PRM.jpg",
+        "tai nghe airpod": "images/airpods2khongday.png",
+        "macbook pro m4 14": "images/macbook-pro_m4-14.jpg",
+        "samsung s24": "images/Samsung s24.jpg",
+        "bàn phím cơ aula f75": "images/aula-f75-v2_1726029932.png",
+        "tay cầm gamesir nova lite 2": "images/gamesirnovalite2.png",
+        "apple watch series 10": "images/Apple_Watch_Series_10.jpg",
+        "tv xiaomi 75\" s mini led 2025": "images/mivietnam-tivi-xiaomi-75-inch-S-Mini-LED-2025.jpg"
+    };
+    const normalize = (s)=> (s||"").toLowerCase().trim();
+    const listEl = document.getElementById("cartList");
+    const emptyEl = document.getElementById("emptyState");
+    const badgeText = document.getElementById("cartBadgeText");
+    const summaryCount = document.getElementById("summaryCount");
+    const summarySubtotal = document.getElementById("summarySubtotal");
+    const summaryTotal = document.getElementById("summaryTotal");
+    const summaryVoucher = document.getElementById("summaryVoucher");
+
     let total = 0;
-    tbody.innerHTML = "";
+
+    if(!listEl){ return; }
+    listEl.innerHTML = "";
+
+    if(cart.length === 0){
+        listEl.classList.add("d-none");
+        emptyEl?.classList.remove("d-none");
+    } else {
+        listEl.classList.remove("d-none");
+        emptyEl?.classList.add("d-none");
+    }
 
     cart.forEach((item, index) => {
-        total += item.price;
-        tbody.innerHTML += `
-        <tr>
-            <td>${item.name}</td>
-            <td>${item.price.toLocaleString()}đ</td>
-            <td>
-                <button class="btn btn-sm btn-danger"
-                onclick="removeItem(${index})">X</button>
-            </td>
-        </tr>
+        total += item.price || 0;
+        const mapped = imageMap[normalize(item.name)];
+        const img = item.image || mapped || "images/Supertechstore.png";
+        const row = document.createElement("div");
+        row.className = "cart-item";
+        row.innerHTML = `
+            <img class="cart-thumb" src="${img}" alt="${item.name || 'Sản phẩm'}">
+            <div class="flex-grow-1">
+                <div class="cart-name">${item.name || 'Sản phẩm'}</div>
+                <div class="text-muted small">SKU: ${index + 1}</div>
+            </div>
+            <div class="text-end">
+                <div class="cart-price">${formatCurrency(item.price)}</div>
+                <button class="btn btn-sm btn-outline-light mt-2" onclick="removeItem(${index})">
+                    <i class="bi bi-x-lg"></i> Xóa
+                </button>
+            </div>
         `;
+        listEl.appendChild(row);
     });
 
-    document.getElementById("total").innerText =
-        "Tổng tiền: " + total.toLocaleString() + "đ";
+    // Voucher info (if còn lưu)
+    const voucher = JSON.parse(localStorage.getItem("voucher") || "null");
+    let discountPercent = 0;
+    if(voucher && typeof voucher.percent === "number"){
+        discountPercent = voucher.percent;
+        summaryVoucher.innerText = `${voucher.code} (-${Math.round(voucher.percent*100)}%)`;
+    } else {
+        summaryVoucher.innerText = "Chưa áp dụng";
+    }
+
+    const totalAfter = Math.round(total * (1 - discountPercent));
+
+    if(badgeText){ badgeText.innerText = `${cart.length} món`; }
+    if(summaryCount){ summaryCount.innerText = cart.length; }
+    if(summarySubtotal){ summarySubtotal.innerText = formatCurrency(total); }
+    if(summaryTotal){ summaryTotal.innerText = formatCurrency(totalAfter); }
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    if(checkoutBtn){ checkoutBtn.disabled = cart.length === 0 || !selectedPayment; }
+
+    updateInstallmentCards();
 }
 
 function removeItem(index){
-    let cart = getCart();
+    const cart = getCart();
     cart.splice(index,1);
     saveCart(cart);
     renderCart();
@@ -94,40 +395,183 @@ function removeItem(index){
 }
 
 function clearCart(){
+    if(!confirm("Bạn có chắc muốn xóa toàn bộ giỏ hàng?")){
+        return;
+    }
     localStorage.removeItem("cart");
     renderCart();
     updateCartCount();
+    selectPayment(null);
+    selectedInstallmentMonths = null;
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+function applyCartVoucher(){
+    const input = document.getElementById("cartVoucherInput");
+    const code = (input?.value || "").trim().toUpperCase();
+    const percent = voucherTable[code];
+    if(code && percent !== undefined){
+        localStorage.setItem("voucher", JSON.stringify({ code, percent }));
+        alert(`Áp dụng mã ${code} thành công: giảm ${Math.round(percent*100)}% tổng đơn.`);
+        renderCart();
+    } else {
+        alert("Mã không hợp lệ, vui lòng thử lại.");
+    }
+}
+
+function clearCartVoucher(){
+    localStorage.removeItem("voucher");
+    const input = document.getElementById("cartVoucherInput");
+    if(input){ input.value = ""; }
     renderCart();
-    updateCartCount();
-});
-function checkout(){
+}
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+function selectPayment(method){
+    selectedPayment = method;
+    const buttons = [
+        { id: "btnPayCard", value: "Thẻ tín dụng" },
+        { id: "btnPayQR", value: "QR Code" },
+        { id: "btnPayCOD", value: "Tiền mặt (COD)" },
+        { id: "btnInstallment", value: "Trả góp" }
+    ];
+    buttons.forEach(btn => {
+        const el = document.getElementById(btn.id);
+        if(!el){ return; }
+        const active = btn.value === method || (btn.value === "Trả góp" && (method || "").startsWith("Trả góp"));
+        el.classList.toggle("btn-primary", active);
+        el.classList.toggle("btn-soft", !active);
+    });
+    const label = document.getElementById("selectedPaymentLabel");
+    if(label){ label.innerText = method || "Chưa chọn"; }
 
+    const cardFields = document.getElementById("cardFields");
+    const qrFields = document.getElementById("qrFields");
+    const codFields = document.getElementById("codFields");
+    const cardInput = document.getElementById("cardNumberInput");
+    const cccdInput = document.getElementById("cccdInput");
+    const instSection = document.getElementById("installmentSection");
+    const isInstallment = (method || "").startsWith("Trả góp");
+
+    if(cardFields){ cardFields.classList.toggle("d-none", method !== "Thẻ tín dụng"); }
+    if(qrFields){ qrFields.classList.toggle("d-none", method !== "QR Code"); }
+    if(codFields){ codFields.classList.toggle("d-none", method !== "Tiền mặt (COD)"); }
+    if(instSection){ instSection.classList.toggle("d-none", !isInstallment); }
+
+    if(method !== "Thẻ tín dụng" && cardInput){ cardInput.value = ""; }
+    if(method !== "Tiền mặt (COD)" && cccdInput){ cccdInput.value = ""; }
+    if(!isInstallment){ selectedInstallmentMonths = null; setActiveInstallmentCard(null); }
+
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    if(checkoutBtn){ checkoutBtn.disabled = !method || getCart().length === 0; }
+}
+
+function chooseInstallment(){
+    const cart = getCart();
     if(cart.length === 0){
         alert("Giỏ hàng đang trống!");
         return;
     }
+    updateInstallmentCards();
+    selectInstallment(selectedInstallmentMonths || 6);
+}
 
-    let total = 0;
-    cart.forEach(item=>{
-        total += item.price;
+function selectInstallment(months){
+    const cart = getCart();
+    if(cart.length === 0){
+        alert("Giỏ hàng đang trống!");
+        return;
+    }
+    const allowed = [6,9,12];
+    if(!allowed.includes(months)){ months = 6; }
+    selectedInstallmentMonths = months;
+    updateInstallmentCards();
+    setActiveInstallmentCard(months);
+    selectPayment(`Trả góp ${months} tháng`);
+}
+
+function setActiveInstallmentCard(months){
+    document.querySelectorAll('.installment-card').forEach(card => {
+        const m = parseInt(card.getAttribute('data-months') || '0', 10);
+        card.classList.toggle('active', months === m);
+    });
+}
+
+function updateInstallmentCards(){
+    const cart = getCart();
+    const instSection = document.getElementById("installmentSection");
+    if(!cart.length){
+        if(instSection){ instSection.classList.add("d-none"); }
+        return;
+    }
+    const total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+    const voucher = JSON.parse(localStorage.getItem("voucher") || "null");
+    const discount = voucher && typeof voucher.percent === "number" ? voucher.percent : 0;
+    const totalAfter = Math.round(total * (1 - discount));
+    const down = Math.round(totalAfter * 0.2);
+
+    const plans = [6,9,12];
+    plans.forEach(m => {
+        const monthly = Math.ceil((totalAfter - down) / m);
+        const downEl = document.getElementById(`instDown${m}`);
+        const monthlyEl = document.getElementById(`instMonthly${m}`);
+        const totalEl = document.getElementById(`instTotal${m}`);
+        if(downEl){ downEl.innerText = formatCurrency(down); }
+        if(monthlyEl){ monthlyEl.innerText = formatCurrency(monthly); }
+        if(totalEl){ totalEl.innerText = formatCurrency(totalAfter); }
     });
 
-    if(confirm("Tổng tiền: " + total.toLocaleString() + "đ\nBạn có chắc muốn thanh toán không?")){
-        
-        alert("Thanh toán thành công 🎉");
-
-        localStorage.removeItem("cart");
-
-        // làm mới lại giao diện
-        renderCart();
-        updateCartCount();
+    if(instSection && selectedPayment && selectedPayment.startsWith("Trả góp")){
+        instSection.classList.remove("d-none");
     }
 }
+
+function checkout(){
+    const cart = getCart();
+    if(cart.length === 0){
+        alert("Giỏ hàng đang trống!");
+        return;
+    }
+    if(!selectedPayment){
+        alert("Vui lòng chọn phương thức thanh toán (Thẻ, QR hoặc COD).");
+        return;
+    }
+
+    if(selectedPayment === "Thẻ tín dụng"){
+        const cardNumber = (document.getElementById("cardNumberInput")?.value || "").replace(/\s+/g, "");
+        if(cardNumber.length < 12){
+            alert("Vui lòng nhập số thẻ tín dụng hợp lệ (tối thiểu 12 số).");
+            return;
+        }
+    }
+
+    if(selectedPayment === "Tiền mặt (COD)"){
+        const cccd = (document.getElementById("cccdInput")?.value || "").trim();
+        if(cccd.length < 6){
+            alert("Vui lòng nhập số CCCD để tiếp tục.");
+            return;
+        }
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price || 0), 0);
+    const voucher = JSON.parse(localStorage.getItem("voucher") || "null");
+    const discount = voucher && typeof voucher.percent === "number" ? voucher.percent : 0;
+    const totalAfter = Math.round(total * (1 - discount));
+
+    if(!confirm(`Thanh toán bằng ${selectedPayment}\nTổng tiền: ${formatCurrency(totalAfter)}\nXác nhận thanh toán?`)){
+        return;
+    }
+
+    alert(`Thanh toán thành công bằng ${selectedPayment} 🎉`);
+    localStorage.removeItem("cart");
+    localStorage.removeItem("voucher");
+    renderCart();
+    updateCartCount();
+    selectPayment(null);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    renderCart();
+    updateCartCount();
+});
 </script>
 
 </body>

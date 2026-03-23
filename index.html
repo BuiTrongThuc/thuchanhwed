@@ -12,14 +12,15 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     color: #e9edf5;
-    background-color: #0a1224;
+    background-color: #051532;
     background-image:
-        radial-gradient(circle at 18% 18%, rgba(13, 110, 253, 0.24), transparent 35%),
-        radial-gradient(circle at 82% 8%, rgba(49, 196, 141, 0.22), transparent 35%),
-        radial-gradient(circle at 22% 82%, rgba(255, 193, 7, 0.16), transparent 36%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0 25%, transparent 25% 50%, rgba(255, 255, 255, 0.06) 50% 75%, transparent 75% 100%);
-    background-size: auto, auto, auto, 160px 160px;
-    background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+        radial-gradient(circle at 18% 18%, rgba(0, 191, 255, 0.32), transparent 36%),
+        radial-gradient(circle at 82% 14%, rgba(13, 110, 253, 0.28), transparent 36%),
+        radial-gradient(circle at 26% 82%, rgba(0, 255, 204, 0.20), transparent 38%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0 25%, transparent 25% 50%, rgba(255, 255, 255, 0.05) 50% 75%, transparent 75% 100%),
+        linear-gradient(180deg, rgba(9, 36, 82, 0.65), rgba(5, 21, 50, 0.65));
+    background-size: auto, auto, auto, 160px 160px, cover;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
     background-attachment: fixed;
     min-height: 100vh;
 }
@@ -54,6 +55,7 @@ body {
 }
 .carousel-caption {
     background: rgba(5, 10, 25, 0.7);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border-radius: 14px;
     padding: 18px 18px 12px;
@@ -138,6 +140,54 @@ footer { background:#212529; color:white; padding:30px 0; }
     border: 1px solid rgba(255,255,255,0.06);
     box-shadow: 0 6px 12px rgba(0,0,0,0.25);
 }
+.ai-assistant-toggle {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 1200;
+    border-radius: 999px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #0d6efd, #31c48d);
+    border: none;
+    color: #fff;
+    padding: 10px 14px;
+    font-weight: 700;
+}
+.ai-assistant-panel {
+    position: fixed;
+    right: 22px;
+    bottom: 84px;
+    width: 320px;
+    max-width: calc(100% - 44px);
+    background: #0f1628;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+    color: #e9edf5;
+    z-index: 1200;
+    display: none;
+    overflow: hidden;
+}
+.ai-assistant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, rgba(13,110,253,0.2), rgba(49,196,141,0.15));
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ai-assistant-body { padding: 12px 14px; max-height: 280px; overflow-y: auto; }
+.ai-assistant-message { margin-bottom: 10px; font-size: 13px; line-height: 1.45; }
+.ai-assistant-message strong { color: #8cd3ff; }
+.ai-assistant-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.ai-assistant-actions button { border-radius: 10px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.06); color: #e9edf5; padding: 6px 10px; font-size: 12px; }
+.ai-assistant-input { padding: 12px 14px; border-top: 1px solid rgba(255,255,255,0.05); background: rgba(255,255,255,0.02); }
+.ai-assistant-input .form-control { background: rgba(255,255,255,0.06); color: #e9edf5; border: 1px solid rgba(255,255,255,0.14); }
+.ai-assistant-input .form-control::placeholder { color: #cfd6e4; }
+.ai-assistant-subtitle { color: #9fb3d1; font-size: 12px; }
 .category-pill:hover { background: linear-gradient(135deg, #0d6efd, #31c48d); color: #fff; text-decoration: none; }
 .category-pill .bi { font-size: 15px; }
 .search-hero {
@@ -173,22 +223,9 @@ footer { background:#212529; color:white; padding:30px 0; }
 </style>
 </head>
 <body>
-
-<div class="promo-bar text-center">
-<div class="container d-flex flex-wrap justify-content-center justify-content-md-between align-items-center gap-2">
-<span>Sale 8/3 sắp tới | Đăng ký ngay!</span>
-<div class="d-flex flex-wrap gap-2">
-<span class="promo-pill"><i class="bi bi-truck"></i>Giao nhanh & miễn phí đơn 300k</span>
-<span class="promo-pill"><i class="bi bi-shield-lock"></i>Chính hãng - xuất VAT</span>
-<span class="promo-pill"><i class="bi bi-telephone"></i>0865 721 389</span>
-</div>
-</div>
-</div>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
 <div class="container">
-<a class="navbar-brand" href="index.html">SuperTechStore</a>
-
+    
 <button class="navbar-toggler"
 type="button"
 data-bs-toggle="collapse"
@@ -225,9 +262,9 @@ alt="Logo SuperTechStore">
 </div>
 <div class="col-md-3">
 <div class="input-group input-group-sm">
-<input id="voucherInput" type="text" class="form-control" placeholder="Nhập mã giảm giá...">
-<button class="btn btn-primary" onclick="applyVoucher()">Áp dụng</button>
-<button class="btn btn-danger" onclick="clearVoucher()">Hủy áp dụng</button>
+<span class="input-group-text"><i class="bi bi-search"></i></span>
+<input id="headerQuickSearch" type="text" class="form-control" placeholder="Tìm nhanh laptop ..." onkeydown="if(event.key==='Enter'){quickSearchHeader();}">
+<button class="btn btn-primary" onclick="quickSearchHeader()">Tìm</button>
 </div>
 </div>
 <div class="col-md-3">
@@ -254,35 +291,11 @@ alt="Logo SuperTechStore">
 
 <main>
 
-<section class="container my-3">
-<div class="search-hero">
-<div class="row g-2 align-items-center">
-<div class="col-lg-8 col-md-7">
-<div class="input-group input-group-lg">
-<span class="input-group-text"><i class="bi bi-search"></i></span>
-<input type="text" class="form-control" placeholder="Bạn muốn tìm sản phẩm gì hôm nay?">
-<a class="btn btn-primary" href="product.html">Tìm nhanh</a>
-</div>
-</div>
-<div class="col-lg-4 col-md-5 text-md-end text-center">
-<div class="d-inline-flex flex-column align-items-md-end align-items-center gap-1">
-<span class="promo-pill"><i class="bi bi-cash-coin"></i>Voucher GOATBONGDA -80%</span>
-<span class="promo-pill"><i class="bi bi-box-seam"></i>Đổi trả 7 ngày nếu lỗi</span>
-<div class="quick-links">
-<a href="product.html#phone">Điện thoại</a>
-<a href="product.html#laptop">Laptop</a>
-<a href="product.html#accessory">Tai nghe / Phụ kiện</a>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
 
 <section class="banner-wrapper">
 <div class="voucher-badge">
 Voucher ưu đãi
-<small>ANHTHUCDEPTRAI -60% | GOATBONGDA -80%</small>
+<small>ANHTHUCDEPTRAI -60% | GOATBONGDA -20%</small>
 <small>TECH10 -10% | CONGAN -20% | QUANDOI -20%</small>
 </div>
 <div id="bannerSlider" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4200" data-bs-pause="false" data-bs-touch="true">
@@ -585,6 +598,36 @@ aria-label="Slide sau">
 
 </main>
 
+<!-- AI Assistant Widget -->
+<button class="ai-assistant-toggle" onclick="toggleAssistant()">
+<i class="bi bi-robot"></i>
+<span>Hỏi trợ lý</span>
+</button>
+
+<div id="aiAssistant" class="ai-assistant-panel">
+    <div class="ai-assistant-header">
+        <div>
+            <strong>Trợ lý AI</strong><br>
+            <small class="ai-assistant-subtitle">Gợi ý sản phẩm, voucher</small>
+        </div>
+        <button class="btn btn-sm btn-outline-light" onclick="toggleAssistant()">×</button>
+    </div>
+    <div class="ai-assistant-body" id="aiAssistantBody">
+        <div class="ai-assistant-message"><strong>Trợ lý:</strong> Mình có thể giúp lọc danh mục, tìm sản phẩm, hoặc kiểm tra mã giảm giá.</div>
+    </div>
+    <div class="ai-assistant-actions">
+        <button onclick="quickAsk('Gợi ý laptop học tập')">Gợi ý laptop học tập</button>
+        <button onclick="quickAsk('Có mã giảm giá nào?')">Mã giảm giá</button>
+        <button onclick="quickAsk('Điện thoại dưới 25 triệu')">Điện thoại <25tr</button>
+    </div>
+    <div class="ai-assistant-input">
+        <div class="input-group input-group-sm">
+            <input id="aiAssistantInput" type="text" class="form-control" placeholder="Bạn ần gì ạ..." onkeydown="if(event.key==='Enter'){sendAssistantMessage();}">
+            <button class="btn btn-primary" onclick="sendAssistantMessage()">Gửi</button>
+        </div>
+    </div>
+</div>
+
 <footer class="text-center bg-dark text-white py-4">
 <div class="container">
 
@@ -592,7 +635,7 @@ aria-label="Slide sau">
 
 <p>Địa chỉ: 5/19 Nguyen van Tang Street, Ho Chi Minh City</p>
 <p>Email: buitrongthuc08@gmail.com | 0865721389</p>
-<p>© 2026 Bản Quyền Thuộc Về Bui Trong Thuc</p>
+<p>© 2026 Bản Quyền Thuộc Về Công Ty SuperTechStore Được HuTech University cấp Phép Hoạt Động 10/2/2026</p>
 
 <p>
 <i class="bi bi-facebook"></i> Facebook |
@@ -659,6 +702,65 @@ document.addEventListener("click", function(e){
         }
     }
 });
+
+function quickSearchHeader(){
+    const input = document.getElementById("headerQuickSearch");
+    const value = (input?.value || "").trim();
+    if(!value){
+        window.location.href = "product.html";
+        return;
+    }
+    localStorage.setItem("searchQuery", value);
+    window.location.href = "product.html";
+}
+
+// AI assistant helpers
+function toggleAssistant(){
+    const panel = document.getElementById("aiAssistant");
+    if(!panel){ return; }
+    panel.style.display = panel.style.display === "block" ? "none" : "block";
+}
+
+function appendAssistantMessage(sender, text){
+    const body = document.getElementById("aiAssistantBody");
+    if(!body){ return; }
+    const div = document.createElement("div");
+    div.className = "ai-assistant-message";
+    div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+}
+
+function sendAssistantMessage(){
+    const input = document.getElementById("aiAssistantInput");
+    if(!input){ return; }
+    const text = input.value.trim();
+    if(!text){ return; }
+    appendAssistantMessage("Bạn", text);
+    input.value = "";
+    const reply = buildAssistantReply(text);
+    appendAssistantMessage("Trợ lý", reply);
+}
+
+function quickAsk(text){
+    appendAssistantMessage("Bạn", text);
+    const reply = buildAssistantReply(text);
+    appendAssistantMessage("Trợ lý", reply);
+}
+
+function buildAssistantReply(text){
+    const lower = text.toLowerCase();
+    if(lower.includes("laptop")){
+        return "Gợi ý: Macbook Pro M4 14\" (mạnh), HP Victus 15 (giá tốt). Xem danh mục Laptop hoặc Featured.";
+    }
+    if(lower.includes("giảm") || lower.includes("voucher") || lower.includes("mã")){
+        return "Mã đang có: GOATBONGDA -20%, ANHTHUCDEPTRAI -60%, TECH10 -10%. Nhập ở hero hoặc dùng khi thêm giỏ.";
+    }
+    if(lower.includes("điện thoại") || lower.includes("phone")){
+        return "Thử iPhone 17 Promax (cao cấp) hoặc Samsung S24 / Vivo X200 (tầm trung).";
+    }
+    return "Mình đã ghi nhận. Bạn có thể dùng thanh tìm kiếm hoặc các tab danh mục để lọc nhanh.";
+}
 </script>
 </body>
 </html>
